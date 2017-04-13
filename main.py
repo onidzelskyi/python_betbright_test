@@ -18,11 +18,12 @@ def lru_example():
 def anagram_example():
     word = 'heart'
     corpus = ['test', 'earth', 'example']
-    print 'For given word \'{}\' and corpus {} founded anagrams are: {}'.format(word, corpus, get_anagrams(word, corpus))
+    print 'For given word \'{}\' and corpus {} founded anagrams are: {}'.format(word,
+                                                                                corpus,
+                                                                                get_anagrams(word, corpus))
 
 
 if __name__ == '__main__':
     date_example()
     lru_example()
     anagram_example()
-
