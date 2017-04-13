@@ -18,14 +18,23 @@ class TestTools(unittest.TestCase):
 
         # next draw date day is current one but hours is over.
         curr_date = datetime.datetime.strptime('2017-04-12 21:00', '%Y-%m-%d %H:%M')
-        supply_date = datetime.datetime.strptime('2017-04-15 20:00', '%Y-%m-%d %H:%M')
-        self.assertEqual(calc_date(curr_date, supply_date), supply_date)
+        draw_date = datetime.datetime.strptime('2017-04-15 20:00', '%Y-%m-%d %H:%M')
+        self.assertEqual(calc_date(curr_date), draw_date)
 
     def test_get_lru(self):
-        self.assertEqual(get_lru(), None)
+        # For given sequence of memory cells and cache size check out final cache state
+        mem_cells = [1, 2, 3, 4, 5, 4, 6]
+        self.assertEqual(get_lru(mem_cells, max_size=4), [5, 6, 3, 4])
 
     def test_get_anagrams(self):
+        # At least one anagram presented in the corpus
         self.assertEqual(get_anagrams('heart', ['test', 'earth', 'example']), ['earth'])
+
+        # No anagrams founded in the corpus
+        self.assertEqual(get_anagrams('heart', ['test', 'beast', 'example']), [])
+
+        # Try find anagrams for an empty word in the corpus
+        self.assertEqual(get_anagrams('', ['test', 'beast', 'example']), [])
 
 
 if __name__ == '__main__':
